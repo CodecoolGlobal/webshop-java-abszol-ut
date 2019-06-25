@@ -34,18 +34,25 @@
 <div class="jumbotron text-center">
     <h1>Your Magical Cart</h1>
 </div>
-<div class="container" th:each="prod,iterStat : ${shoppingCartProducts}">
+<div th:if="${shoppingCartProducts.isEmpty()}" class="jumbotron text-center">
+    <h1>Your cart is currently empty!</h1>
+</div>
+
+<div th:if="not ${shoppingCartProducts.isEmpty()}" class="container"
+     th:each="prod: ${shoppingCartProducts}">
     <table>
         <tr>
-            <td> </td>
+            <td></td>
             <td>Name</td>
             <td>Price</td>
+            <td>Qty</td>
         </tr>
         <tr>
             <td><img class="shopping-cart-images" src="http://placehold.it/400x250/000/fff"
-                     th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/></td>
-            <td th:text="${prod.name}" ></td>
-            <td th:text="${prod.getPrice()}"></td>
+                     th:attr="src='/static/img/product_' + ${prod.key.getId()} + '.jpg'" alt=""/></td>
+            <td th:text="${prod.key.getName()}"></td>
+            <td th:text="${prod.key.getPrice()}"></td>
+            <td th:text="${prod.value}"></td>
         </tr>
     </table>
 </div>

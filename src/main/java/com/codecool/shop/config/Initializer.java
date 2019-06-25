@@ -84,6 +84,5 @@ public class Initializer implements ServletContextListener {
         Product blood = new Product("Unicorn blood", 600, "USD", "Stay alive - drink blood!", adultsonly, wannahavesomedrugs);
         productDataStore.add(blood);
 
-        CartDaoMem.getInstance().add(magicdust);
     }
 }

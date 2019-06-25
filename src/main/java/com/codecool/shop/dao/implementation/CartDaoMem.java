@@ -5,12 +5,15 @@ import com.codecool.shop.model.Product;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CartDaoMem implements CartDao {
 
     private List<Product> data = new ArrayList<>();
+    private HashMap<Product, Integer> productsAndQty = new HashMap<>();
     private static CartDaoMem instance = null;
+
 
     private CartDaoMem() {
     }
@@ -21,6 +24,23 @@ public class CartDaoMem implements CartDao {
         }
         return instance;
     }
+
+    public void clearList() {
+        data.clear();
+    }
+
+    public HashMap<Product, Integer> getProductsAndQty() {
+        for (Product product : data) {
+            if (productsAndQty.containsKey(product)) {
+                productsAndQty.put(product, productsAndQty.get(product) + 1);
+            } else {
+                productsAndQty.put(product, 1);
+            }
+        }
+        return productsAndQty;
+
+    }
+
 
     @Override
     public void add(Product product) {
