@@ -65,6 +65,12 @@
     width: 150px;
 }
 
-.shopping-cart-images:hover {
+table, th, td {
+    text-align: center;
+}
+
+table {
+    width: 100%;
 
 }
+

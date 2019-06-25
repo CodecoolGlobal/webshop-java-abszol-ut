@@ -7,12 +7,14 @@ import com.codecool.shop.model.Product;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CartDaoMem implements CartDao {
 
     private List<Product> data = new ArrayList<>();
     private HashMap<Product, Integer> productsAndQty = new HashMap<>();
     private static CartDaoMem instance = null;
+    private int itemCounter = 0;
 
 
     private CartDaoMem() {
@@ -36,6 +38,7 @@ public class CartDaoMem implements CartDao {
             } else {
                 productsAndQty.put(product, 1);
             }
+            itemCounter++;
         }
         return productsAndQty;
 
@@ -48,13 +51,16 @@ public class CartDaoMem implements CartDao {
     }
 
     @Override
-    public Product find(int id) {
-        return data.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
-    }
-
-    @Override
     public void remove(int id) {
-        data.remove(find(id));
+        for (Map.Entry<Product, Integer> e : productsAndQty.entrySet()) {
+            if (e.getKey().getId() == id && e.getValue() > 1) {
+                e.setValue(e.getValue() - 1);
+                itemCounter--;
+            } else {
+                productsAndQty.remove(e.getKey());
+                itemCounter--;
+            }
+        }
     }
 
     @Override

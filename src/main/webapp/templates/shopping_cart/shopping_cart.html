@@ -38,16 +38,16 @@
     <h1>Your cart is currently empty!</h1>
 </div>
 
-<div th:if="not ${shoppingCartProducts.isEmpty()}" class="container"
-     th:each="prod: ${shoppingCartProducts}">
+<div th:if="not ${shoppingCartProducts.isEmpty()} ">
     <table>
         <tr>
-            <td></td>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Qty</td>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Qty</th>
         </tr>
-        <tr>
+        <tr class="container"
+            th:each="prod: ${shoppingCartProducts}">
             <td><img class="shopping-cart-images" src="http://placehold.it/400x250/000/fff"
                      th:attr="src='/static/img/product_' + ${prod.key.getId()} + '.jpg'" alt=""/></td>
             <td th:text="${prod.key.getName()}"></td>
