@@ -3,6 +3,7 @@ package com.codecool.shop.config;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
@@ -83,5 +84,6 @@ public class Initializer implements ServletContextListener {
         Product blood = new Product("Unicorn blood", 600, "USD", "Stay alive - drink blood!", adultsonly, wannahavesomedrugs);
         productDataStore.add(blood);
 
+        CartDaoMem.getInstance().add(magicdust);
     }
 }
