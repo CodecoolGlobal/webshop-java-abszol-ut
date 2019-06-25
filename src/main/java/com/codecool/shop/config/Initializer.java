@@ -23,19 +23,65 @@ public class Initializer implements ServletContextListener {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
-        //setting up a new supplier
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
-        supplierDataStore.add(amazon);
-        Supplier lenovo = new Supplier("Lenovo", "Computers");
-        supplierDataStore.add(lenovo);
+        //Suppliers
+        Supplier wannahavesomedrugs = new Supplier ("Wanna have some drugs? Corp", "Supported by Daniel Radcliffe");
+        supplierDataStore.add(wannahavesomedrugs);
+        Supplier olliwandermagicwands = new Supplier("Olliwander's Magic Wands", "Very best wands in town, where the size doesn't matter");
+        supplierDataStore.add(olliwandermagicwands);
+        Supplier weasleystutoring = new Supplier("Weasley's Tutoring", "Most effective spells, from experts");
+        supplierDataStore.add(weasleystutoring);
+        Supplier cheapslaves = new Supplier("Cheap Slaves LTD", "From beasts to humans, for weddings, stags, birthdays, funerals, etc.");
+        supplierDataStore.add(cheapslaves);
 
-        //setting up a new product category
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        productCategoryDataStore.add(tablet);
+        //Product categories
+        ProductCategory magictool = new ProductCategory("Magic tool", "Tools","Utilities for magic");
+        productCategoryDataStore.add(magictool);
+        ProductCategory magicspell = new ProductCategory("Magic spell", "Spells", "Most effectiv words against enemies");
+        productCategoryDataStore.add(magicspell);
+        ProductCategory rental = new ProductCategory("Rental", "Rentals", "Various species around the world");
+        productCategoryDataStore.add(rental);
+        ProductCategory adultsonly = new ProductCategory("18+", "Adults only", "BEVARE! Adults only! :O");
+        productCategoryDataStore.add(adultsonly);
 
-        //setting up products and printing it
-        productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
+        //Products
+        Product magicdust = new Product("Magic Dust", 10, "USD", "Pure happiness and joy", magictool, wannahavesomedrugs);
+        productDataStore.add(magicdust);
+        Product cloak = new Product("Cloak of invisibility", 50, "USD", "Whach out!", magictool, wannahavesomedrugs);
+        productDataStore.add(cloak);
+        Product wandphoenix = new Product ("Magic wand - phoenix feather", 20, "USD", "Optimal for fiery wizards and witches", magictool, olliwandermagicwands);
+        productDataStore.add(wandphoenix);
+        Product wanddragon = new Product ("Magic wand - dragon heart string", 20, "USD", "Optimal for fiery wizards and witches", magictool, olliwandermagicwands);
+        productDataStore.add(wanddragon);
+        Product wandunicorn = new Product ("Magic wand - unicorn hair", 20, "USD", "Optimal for fiery wizards and witches", magictool, olliwandermagicwands);
+        productDataStore.add(wandunicorn);
+        Product invito = new Product("Invito", 30, "USD", "Don't be so distant - pull your loved ones closer", magicspell, weasleystutoring);
+        productDataStore.add(invito);
+        Product expecto = new Product("Expecto Patronum(with custom animal type)", 30, "USD", "Good defender against dementors", magicspell, weasleystutoring  );
+        productDataStore.add(expecto);
+        Product animagus = new Product ("To be an animagus(with custom animal type", 40, "USD", "Why just wonder wildlife if you can be a part of it?", magicspell, weasleystutoring);
+        productDataStore.add(animagus);
+        Product leviosa = new Product ("Vingardium leviosa", 30, "USD", "Not leviosaaa!", magicspell, weasleystutoring);
+        productDataStore.add(leviosa);
+        Product hungarian = new Product ("Hungarian Horntail", 200, "USD", "Coolest dragon ever", rental, cheapslaves);
+        productDataStore.add(hungarian);
+        Product hippogriff = new Product ("Hippogriff", 200, "USD", "Known flying object", rental, cheapslaves);
+        productDataStore.add(hippogriff);
+        Product phoenix = new Product ("Phoenix", 200, "USD", "Pet for life", rental, cheapslaves);
+        productDataStore.add(phoenix);
+        Product hagrid = new Product ("Rubeus Hagrid", 300, "USD", "'Happi birthdae, Hary!'", rental, cheapslaves);
+        productDataStore.add(hagrid);
+        Product random = new Product ("Random human pack", 50, "USD", "Supriiiise!", rental, cheapslaves);
+        productDataStore.add(random);
+        Product tear = new Product("Phoenix tear", 600, "USD", "Wounds are for the weak", adultsonly, wannahavesomedrugs);
+        productDataStore.add(tear);
+        Product mushroom= new Product("Magic mushrooms", 600, "USD", "Original magic", adultsonly, wannahavesomedrugs);
+        productDataStore.add(mushroom);
+        Product root = new Product("Mandragora root", 600, "USD", "Solution for blue screen of death ", adultsonly, wannahavesomedrugs);
+        productDataStore.add(root);
+        Product fang = new Product("Basilisc fang", 600, "USD", "If you're bored of the book...", adultsonly, wannahavesomedrugs);
+        productDataStore.add(fang);
+        Product blood = new Product("Unicorn blood", 600, "USD", "Stay alive - drink blood!", adultsonly, wannahavesomedrugs);
+        productDataStore.add(blood);
+
     }
 }
