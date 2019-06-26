@@ -37,6 +37,29 @@
 <div class="container">
     <div class="card">
         <strong th:text="${category.name}">Category Title</strong>
+        <form action="/" method="post">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="supplier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Suppliers
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" name="supplierbutton" value="1">Wanna have some drugs?</button>
+                <button class="dropdown-item" name="supplierbutton" value="2">Ollivander Magic Wands</button>
+                <button class="dropdown-item" name="supplierbutton" value="3">Weasley's Tutoring</button>
+                <button class="dropdown-item" name="supplierbutton" value="4">Cheap Slaves</button>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" name="categorybutton" value="1">Magic tools</button>
+                <button class="dropdown-item" name="categorybutton" value="2">Magic spells</button>
+                <button class="dropdown-item" name="categorybutton" value="3">Rental</button>
+                <button class="dropdown-item" name="categorybutton" value="4">Adults only</button>
+            </div>
+        </div>
+        </form>
     </div>
 
     <div id="products" class="row">
