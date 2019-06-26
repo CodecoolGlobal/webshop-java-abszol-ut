@@ -61,8 +61,14 @@
     margin: 0 0 11px;
 }
 
+.card{
+    display: inline-block;
+}
+
 .card:hover {
     opacity: 1;
     box-shadow: 1px 5px 12px 1px #777;
 }
+
+
 
