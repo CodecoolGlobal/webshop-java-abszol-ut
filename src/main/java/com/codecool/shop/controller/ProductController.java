@@ -4,81 +4,89 @@ import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
-import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Product;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        HttpSession session = req.getSession();
+
+        TemplateEngine engineGet = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("products", productDataStore.getAll());
-        context.setVariable("category", productCategoryDataStore.find(1));
-        engine.process("product/index.html", context, resp.getWriter());
+        ProductCategory defaultCategory = productCategoryDataStore.find(1);
+        context.setVariable("category", defaultCategory);
+        context.setVariable("products", productDataStore.getBy(defaultCategory));
+
+        if (session.getAttribute("supplier") == null && session.getAttribute("category") == null) {
+            session.setAttribute("supplier", null);
+            session.setAttribute("category", defaultCategory);
+        }
+
+        engineGet.process("product/index.html", context, resp.getWriter());
     }
 
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
-        String ID = req.getParameter("button");
-        Product product = ProductDaoMem.getInstance().find(Integer.parseInt(ID));
-        CartDaoMem.getInstance().add(product);
-        doGet(req, resp);
-
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-
-        String supplierbutton = req.getParameter("supplierbutton");
-        String categorybutton = req.getParameter("categorybutton");
-
-        System.out.println("sup" + supplierbutton);
-        System.out.println("cat" + categorybutton);
-
-        WebContext context = new WebContext(req, resp, req.getServletContext());
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         ProductDao productDataStore = ProductDaoMem.getInstance();
 
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
 
-        if (supplierbutton != null) {
-            Supplier selectedSupplier = supplierDataStore.find(Integer.parseInt(supplierbutton));
+        String addButton = req.getParameter("button");
+        String supplierButton = req.getParameter("supplierbutton");
+        String categoryButton = req.getParameter("categorybutton");
+
+        HttpSession session = req.getSession();
+        if (supplierButton != null) {
+            Supplier selectedSupplier = supplierDataStore.find(Integer.parseInt(supplierButton));
+            session.setAttribute("supplier", selectedSupplier);
+            session.setAttribute("category", null);
+        } else if (categoryButton != null) {
+
+            ProductCategory selectedCategory = productCategoryDataStore.find(Integer.parseInt(categoryButton));
+            session.setAttribute("category", selectedCategory);
+            session.setAttribute("supplier", null);
+        }
+
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+
+        if (addButton != null) {
+            Product product = ProductDaoMem.getInstance().find(Integer.parseInt(addButton));
+            CartDaoMem.getInstance().add(product);
+        }
+
+        if (session.getAttribute("supplier") != null) {
+            Supplier selectedSupplier = (Supplier) session.getAttribute("supplier");
             context.setVariable("category", selectedSupplier);
             context.setVariable("products", productDataStore.getBy(selectedSupplier));
             engine.process("product/index.html", context, resp.getWriter());
-        } else if (categorybutton != null) {
-            ProductCategory selectedCategory = productCategoryDataStore.find(Integer.parseInt(categorybutton));
+        } else if (session.getAttribute("category") != null) {
+            ProductCategory selectedCategory = (ProductCategory) session.getAttribute("category");
             context.setVariable("category", selectedCategory);
             context.setVariable("products", productDataStore.getBy(selectedCategory));
             engine.process("product/index.html", context, resp.getWriter());
         }
-
     }
 }
