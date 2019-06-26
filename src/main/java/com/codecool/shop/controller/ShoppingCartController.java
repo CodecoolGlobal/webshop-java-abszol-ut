@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/shopping_cart")
+@WebServlet("/shopping-cart")
 public class ShoppingCartController extends HttpServlet {
 
     @Override
