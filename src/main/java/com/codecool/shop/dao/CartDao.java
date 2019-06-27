@@ -9,7 +9,8 @@ import java.util.List;
 public interface CartDao {
 
     void add(Product product);
-    void remove(int id);
+
+    void remove(Product product);
 
     List<Product> getAll();
 

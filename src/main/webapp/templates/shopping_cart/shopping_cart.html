@@ -40,21 +40,68 @@
 
 <div th:if="not ${shoppingCartProducts.isEmpty()} ">
     <table>
-        <tr>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Qty</th>
-        </tr>
-        <tr class="container"
-            th:each="prod: ${shoppingCartProducts}">
-            <td><img class="shopping-cart-images" src="http://placehold.it/400x250/000/fff"
-                     th:attr="src='/static/img/product_' + ${prod.key.getId()} + '.jpg'" alt=""/></td>
-            <td th:text="${prod.key.getName()}"></td>
-            <td th:text="${prod.key.getPrice()}"></td>
-            <td th:text="${prod.value}"></td>
-        </tr>
+        <form action="/shopping_cart" method="post">
+            <tr>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Add</th>
+                <th>Remove</th>
+
+            </tr>
+            <tr class="container"
+                th:each="prod: ${shoppingCartProducts}">
+                <td><img class="shopping-cart-images" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/static/img/product_' + ${prod.key.getId()} + '.jpg'" alt=""/></td>
+                <td th:text="${prod.key.getName()}"></td>
+                <td th:text="${prod.key.getPrice()}"></td>
+                <td th:text="${prod.value}"></td>
+                <td>
+                    <button name="add" th:value="${prod.key.getId()}">Add</button>
+                </td>
+                <td>
+                    <button name="remove" th:value="${prod.key.getId()}">Remove</button>
+                </td>
+            </tr>
+            <br>
+            <br>
+            <br>
+            <br>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+
+                <td><b>Total price:</b></td>
+                <td>
+                    <b>
+                        <div th:text=" ${totalPrice} + ' USD'">Total price:</div>
+                    </b>
+                </td>
+
+            </tr>
+            <br>
+            <br>
+            <br>
+            <br>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <button>Checkout and pay</button>
+                </td>
+
+            </tr>
+        </form>
     </table>
+
+
 </div>
 </body>
 </html>

@@ -4,10 +4,7 @@ import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.model.Product;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CartDaoMem implements CartDao {
 
@@ -45,19 +42,29 @@ public class CartDaoMem implements CartDao {
     }
 
 
+    public float getTotalPrice() {
+        float result = 0;
+        for (Map.Entry<Product, Integer> e : productsAndQty.entrySet()) {
+            result += e.getKey().getDefaultPrice() * e.getValue();
+        }
+        return result;
+    }
+
+
     @Override
     public void add(Product product) {
         data.add(product);
     }
 
     @Override
-    public void remove(int id) {
-        for (Map.Entry<Product, Integer> e : productsAndQty.entrySet()) {
-            if (e.getKey().getId() == id && e.getValue() > 1) {
-                e.setValue(e.getValue() - 1);
+    public void remove(Product product) {
+        for (Iterator<Map.Entry<Product, Integer>> iterator = productsAndQty.entrySet().iterator(); iterator.hasNext(); ) {
+            Map.Entry<Product, Integer> entry = iterator.next();
+            if (entry.getKey() == product && entry.getValue() > 1) {
+                entry.setValue(entry.getValue() - 1);
                 itemCounter--;
-            } else {
-                productsAndQty.remove(e.getKey());
+            } else if (entry.getKey() == product) {
+                iterator.remove();
                 itemCounter--;
             }
         }
