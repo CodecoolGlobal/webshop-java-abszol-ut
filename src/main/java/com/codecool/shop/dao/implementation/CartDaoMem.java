@@ -29,6 +29,10 @@ public class CartDaoMem implements CartDao {
     }
 
     public HashMap<Product, Integer> getProductsAndQty() {
+        return productsAndQty;
+    }
+
+    public HashMap<Product, Integer> setAndGetProductsAndQty() {
         for (Product product : data) {
             if (productsAndQty.containsKey(product)) {
                 productsAndQty.put(product, productsAndQty.get(product) + 1);
