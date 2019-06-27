@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:method="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta name="author" content="Codecool"/>
@@ -53,13 +54,13 @@
 <div class="row">
     <div class="col-75">
         <div class="container">
-            <form action="/payment">
+            <form action="/checkout" method="post">
 
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Address</h3>
                         <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                        <input type="text" id="fname" name="firstname" placeholder="Full Name">
+                        <input type="text" id="fname" name="fullname" placeholder="Full Name">
                         <label for="email"><i class="fa fa-envelope"></i> Email</label>
                         <input type="text" id="email" name="email" placeholder="example@example.com">
                         <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
