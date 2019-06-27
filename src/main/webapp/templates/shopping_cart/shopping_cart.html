@@ -40,7 +40,7 @@
 
 <div th:if="not ${shoppingCartProducts.isEmpty()} ">
     <table>
-        <form action="/shopping_cart" method="post">
+        <form action="/shopping-cart" method="post">
             <tr>
                 <th>Picture</th>
                 <th>Name</th>
@@ -64,7 +64,8 @@
                     <button name="remove" th:value="${prod.key.getId()}">Remove</button>
                 </td>
             </tr>
-            <br>
+        </form>
+        <br>
             <br>
             <br>
             <br>
@@ -94,11 +95,13 @@
                 <td></td>
                 <td></td>
                 <td>
+                    <form action="/checkout" method="get">
                     <button>Checkout and pay</button>
+                    </form>
                 </td>
 
             </tr>
-        </form>
+
     </table>
 
 
