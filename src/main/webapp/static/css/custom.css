@@ -1,3 +1,37 @@
+#name {
+    color: red;
+}
+
+#shoppingCart {
+    float: right;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+    /*padding-bottom: 100px;*/
+}
+
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
 .glyphicon {
     margin-right: 5px;
 }
@@ -58,6 +92,15 @@
     margin: 0 0 11px;
 }
 
+.box-around-dropdown {
+    margin-bottom: 10px;
+}
+
+.dropdown {
+    float: left;
+    margin: 10px;
+}
+
 .shopping-cart-images {
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -74,11 +117,11 @@ table {
 
 }
 
-.dropdown{
+.dropdown {
     display: inline-block;
 }
 
-.card:hover {
+.product-card:hover {
     opacity: 1;
     box-shadow: 1px 5px 12px 1px #777;
 }

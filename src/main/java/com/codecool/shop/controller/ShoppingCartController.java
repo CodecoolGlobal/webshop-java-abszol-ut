@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet("/shopping_cart")
+@WebServlet("/shopping-cart")
 public class ShoppingCartController extends HttpServlet {
 
     @Override

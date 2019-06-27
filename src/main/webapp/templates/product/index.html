@@ -7,7 +7,9 @@
 
     <title>Codecool Shop</title>
 
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
@@ -33,46 +35,54 @@
 </head>
 
 <body>
+<div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="#contact">Contact</a>
+    <a href="#" id="name"><i th:text="${category.name}"></i></a>
+    <a href="/shopping-cart" id="shoppingCart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+</div>
 
 
+<div class="jumbotron text-center">
+    <h1>Codecool Shop</h1>
+</div>
 
 
 <div class="container">
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+    <div class="card box-around-dropdown">
         <form action="/" method="post">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="supplier" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Suppliers
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" name="supplierbutton" value="1">Wanna have some drugs?</button>
-                <button class="dropdown-item" name="supplierbutton" value="2">Ollivander Magic Wands</button>
-                <button class="dropdown-item" name="supplierbutton" value="3">Weasley's Tutoring</button>
-                <button class="dropdown-item" name="supplierbutton" value="4">Cheap Slaves</button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="supplier" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Suppliers
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" name="supplierbutton" value="1">Wanna have some drugs?</button>
+                    <button class="dropdown-item" name="supplierbutton" value="2">Ollivander Magic Wands</button>
+                    <button class="dropdown-item" name="supplierbutton" value="3">Weasley's Tutoring</button>
+                    <button class="dropdown-item" name="supplierbutton" value="4">Cheap Slaves</button>
+                </div>
             </div>
-        </div>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="category" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                Categories
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" name="categorybutton" value="1">Magic tools</button>
-                <button class="dropdown-item" name="categorybutton" value="2">Magic spells</button>
-                <button class="dropdown-item" name="categorybutton" value="3">Rental</button>
-                <button class="dropdown-item" name="categorybutton" value="4">Adults only</button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="category" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" name="categorybutton" value="1">Magic tools</button>
+                    <button class="dropdown-item" name="categorybutton" value="2">Magic spells</button>
+                    <button class="dropdown-item" name="categorybutton" value="3">Rental</button>
+                    <button class="dropdown-item" name="categorybutton" value="4">Adults only</button>
+                </div>
             </div>
-        </div>
         </form>
     </div>
 
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="card">
+            <div class="card product-card">
                 <img class="image" src="http://placehold.it/400x250/000/fff"
                      th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
-                    <div class="card-header">
+                <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                     <p class="card-text" th:text="${prod.description}">Product description... </p>
                 </div>
@@ -82,7 +92,7 @@
                     </div>
                     <div class="card-text">
                         <form action="/" method="post">
-                        <button class="btn btn-success" name="button" th:value="${prod.id}">Add to cart</button>
+                            <button class="btn btn-success" name="button" th:value="${prod.id}">Add to cart</button>
                         </form>
                     </div>
                 </div>
