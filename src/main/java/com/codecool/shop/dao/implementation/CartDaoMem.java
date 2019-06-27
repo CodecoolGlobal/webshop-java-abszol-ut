@@ -41,6 +41,9 @@ public class CartDaoMem implements CartDao {
 
     }
 
+    public void resetCart() {
+        this.productsAndQty = new HashMap<>();
+    }
 
     public float getTotalPrice() {
         float result = 0;

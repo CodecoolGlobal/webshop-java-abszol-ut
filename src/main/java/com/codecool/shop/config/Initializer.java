@@ -37,17 +37,17 @@ public class Initializer implements ServletContextListener {
         //Product categories
         ProductCategory magictool = new ProductCategory("Magic tool", "Tools","Utilities for magic");
         productCategoryDataStore.add(magictool);
-        ProductCategory magicspell = new ProductCategory("Magic spell", "Spells", "Most effectiv words against enemies");
+        ProductCategory magicspell = new ProductCategory("Magic spell", "Spells", "Most effective words against enemies");
         productCategoryDataStore.add(magicspell);
         ProductCategory rental = new ProductCategory("Rental", "Rentals", "Various species around the world");
         productCategoryDataStore.add(rental);
-        ProductCategory adultsonly = new ProductCategory("18+", "Adults only", "BEVARE! Adults only! :O");
+        ProductCategory adultsonly = new ProductCategory("18+", "Adults only", "BEWARE! Adults only! :O");
         productCategoryDataStore.add(adultsonly);
 
         //Products
         Product magicdust = new Product("Magic Dust", 10, "USD", "Pure happiness and joy", magictool, wannahavesomedrugs);
         productDataStore.add(magicdust);
-        Product cloak = new Product("Cloak of invisibility", 50, "USD", "Whach out!", magictool, wannahavesomedrugs);
+        Product cloak = new Product("Cloak of invisibility", 50, "USD", "Watch out!", magictool, wannahavesomedrugs);
         productDataStore.add(cloak);
         Product wandphoenix = new Product ("Magic wand - phoenix feather", 20, "USD", "Optimal for fiery wizards and witches", magictool, olliwandermagicwands);
         productDataStore.add(wandphoenix);
@@ -71,7 +71,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(phoenix);
         Product hagrid = new Product ("Rubeus Hagrid", 300, "USD", "'Happi birthdae, Hary!'", rental, cheapslaves);
         productDataStore.add(hagrid);
-        Product random = new Product ("Random human pack", 50, "USD", "Supriiiise!", rental, cheapslaves);
+        Product random = new Product ("Random human pack", 50, "USD", "Surpriiiise!", rental, cheapslaves);
         productDataStore.add(random);
         Product tear = new Product("Phoenix tear", 600, "USD", "Wounds are for the weak", adultsonly, wannahavesomedrugs);
         productDataStore.add(tear);
