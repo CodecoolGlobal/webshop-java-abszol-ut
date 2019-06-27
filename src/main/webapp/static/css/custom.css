@@ -1,21 +1,36 @@
+.jumbotron{
+    background-image: url("/static/img/background2.jpg");
+    background-size: 1900px 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 #name {
-    color: red;
+    font-size: 20px;
+    color: #a7871b;
 }
 
 #shoppingCart {
     float: right;
 }
 
+.btn-success, .btn-secondary {
+    color: #fff;
+    background-color: #a7871b;
+    border-color: #a7871b;
+}
+
 .topnav {
     overflow: hidden;
-    background-color: #333;
+    margin-top: -10px;
+    margin-bottom: 20px;
     /*padding-bottom: 100px;*/
 }
 
 
 .topnav a {
     float: left;
-    color: #f2f2f2;
+    color: #431c05;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -23,13 +38,12 @@
 }
 
 .topnav a:hover {
-    background-color: #ddd;
     color: black;
 }
 
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
+.topnav a.active, .btn-success:hover, .button{
+    background-color: #a7871b;
+    color: #431c05;
 }
 
 .glyphicon {
@@ -56,7 +70,7 @@
 }
 
 .item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
-    background: #428bca;
+    background: #431c05;
 }
 
 .item.list-group-item .list-group-image {

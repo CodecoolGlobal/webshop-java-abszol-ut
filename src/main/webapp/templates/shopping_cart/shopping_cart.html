@@ -27,6 +27,7 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
 
 </head>
 <body>
@@ -34,7 +35,14 @@
 <div class="jumbotron text-center">
     <h1>Your Magical Cart</h1>
 </div>
-<div th:if="${shoppingCartProducts.isEmpty()}" class="jumbotron text-center">
+
+<div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="/shopping-cart" id="shoppingCart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+</div>
+
+
+<div th:if="${shoppingCartProducts.isEmpty()}" class="text-center">
     <h1>Your cart is currently empty!</h1>
 </div>
 
@@ -58,10 +66,10 @@
                 <td th:text="${prod.key.getPrice()}"></td>
                 <td th:text="${prod.value}"></td>
                 <td>
-                    <button name="add" th:value="${prod.key.getId()}">Add</button>
+                    <button class="button" name="add" th:value="${prod.key.getId()}">Add</button>
                 </td>
                 <td>
-                    <button name="remove" th:value="${prod.key.getId()}">Remove</button>
+                    <button class="button" name="remove" th:value="${prod.key.getId()}">Remove</button>
                 </td>
             </tr>
         </form>
@@ -96,7 +104,7 @@
                 <td></td>
                 <td>
                     <form action="/checkout" method="get">
-                    <button>Checkout and pay</button>
+                    <button class="button" >Checkout and pay</button>
                     </form>
                 </td>
 

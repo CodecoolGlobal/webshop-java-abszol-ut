@@ -8,17 +8,11 @@ body {
 }
 
 #name {
-    color: red;
+    color: #a7871b;
 }
 
 #shoppingCart {
     float: right;
-}
-
-.topnav {
-    overflow: hidden;
-    background-color: #333;
-    /*padding-bottom: 100px;*/
 }
 
 
@@ -36,9 +30,9 @@ body {
     color: black;
 }
 
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
+.topnav a.active, .btn-success:hover, .btn-success:active {
+    background-color: #a7871b;
+    color: #431c05;
 }
 
 .glyphicon {
@@ -101,7 +95,7 @@ label {
 }
 
 .btn {
-    background-color: #4CAF50;
+    background-color: #a7871b;;
     color: white;
     padding: 12px;
     margin: 10px 0;
@@ -113,11 +107,11 @@ label {
 }
 
 .btn:hover {
-    background-color: #45a049;
+    background-color: #431c05;
 }
 
 a {
-    color: #2196F3;
+    color: #a7871b;
 }
 
 hr {
