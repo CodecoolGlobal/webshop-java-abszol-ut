@@ -1,28 +1,77 @@
-.jumbotron{
-    background-image: url("/static/img/background2.jpg");
-    background-size: 1900px 200px;
-    background-position: center;
+body{
+    background-image: url("/static/img/product/556209.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
+    font-size: 17px;
+}
+
+.titlename, h1{
+    color: white;
+}
+
+
+.jumbotron{
+    background-color: #ffffff00;
 }
 
 #name {
-    font-size: 20px;
+    font-size: 28px;
+    margin-left: 10px;
     color: #a7871b;
 }
 
 #shoppingCart {
     float: right;
+    size: 34px;
 }
 
-.btn-success, .btn-secondary {
+.center_btn{
+    padding: 10px;
+    margin: 0% 10% 10% 45%;
+}
+
+.success-message{
+    margin: 45px;
+}
+
+
+.btn-success, .btn-secondary, .new_btn {
     color: #fff;
     background-color: #a7871b;
     border-color: #a7871b;
+    border-radius:4px;
+}
+
+.btn-success:hover, .button:hover, .new_btn:hover{
+    background-color:#431c05;
+    color: #d6ae21;
+}
+
+.frame{
+    margin-left: 1%;
+}
+
+.menu{
+    overflow: hidden;
+
+}
+
+.menu a{
+    float: left;
+    color: #431c05;
+    border-radius:4px;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
 }
 
 .topnav {
     overflow: hidden;
     margin-top: -10px;
+
     margin-bottom: 20px;
     /*padding-bottom: 100px;*/
 }
@@ -30,18 +79,20 @@
 
 .topnav a {
     float: left;
+    margin-left: 20%;
     color: #431c05;
+    border-radius:4px;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 }
 
-.topnav a:hover {
+.topnav a:hover, .menu a:hover {
     color: black;
 }
 
-.topnav a.active, .btn-success:hover, .button{
+.topnav a.active, .menu a.active{
     background-color: #a7871b;
     color: #431c05;
 }
@@ -122,12 +173,16 @@
     width: 150px;
 }
 
+th, b{
+    color: white;
+}
+
 table, th, td {
     text-align: center;
 }
 
 table {
-    width: 100%;
+    width: 95%;
 
 }
 
@@ -135,8 +190,12 @@ table {
     display: inline-block;
 }
 
+.product-card{
+    margin: 5px;
+}
+
 .product-card:hover {
     opacity: 1;
-    box-shadow: 1px 5px 12px 1px #777;
+    box-shadow: 1px 7px 14px 1px #a7871b;
 }
 

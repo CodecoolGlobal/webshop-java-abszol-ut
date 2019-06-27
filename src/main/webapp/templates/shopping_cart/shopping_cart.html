@@ -32,13 +32,12 @@
 </head>
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Your Magical Cart</h1>
+<div class="menu">
+    <a class="active" href="#home">Home</a>
 </div>
 
-<div class="topnav">
-    <a class="active" href="#home">Home</a>
-    <a href="/shopping-cart" id="shoppingCart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+<div class="jumbotron text-center">
+    <h1>Your Magical Cart</h1>
 </div>
 
 
@@ -47,7 +46,7 @@
 </div>
 
 <div th:if="not ${shoppingCartProducts.isEmpty()} ">
-    <table>
+    <table align="center">
         <form action="/shopping-cart" method="post">
             <tr>
                 <th>Picture</th>
@@ -58,18 +57,18 @@
                 <th>Remove</th>
 
             </tr>
-            <tr class="container"
+            <tr class="container cart"
                 th:each="prod: ${shoppingCartProducts}">
                 <td><img class="shopping-cart-images" src="http://placehold.it/400x250/000/fff"
                          th:attr="src='/static/img/product_' + ${prod.key.getId()} + '.jpg'" alt=""/></td>
                 <td th:text="${prod.key.getName()}"></td>
                 <td th:text="${prod.key.getPrice()}"></td>
-                <td th:text="${prod.value}"></td>
+                <td class="value" th:text="${prod.value}"></td>
                 <td>
-                    <button class="button" name="add" th:value="${prod.key.getId()}">Add</button>
+                    <button class="new_btn" name="add" th:value="${prod.key.getId()}">Add</button>
                 </td>
                 <td>
-                    <button class="button" name="remove" th:value="${prod.key.getId()}">Remove</button>
+                    <button class="new_btn" name="remove" th:value="${prod.key.getId()}">Remove</button>
                 </td>
             </tr>
         </form>
@@ -104,7 +103,7 @@
                 <td></td>
                 <td>
                     <form action="/checkout" method="get">
-                    <button class="button" >Checkout and pay</button>
+                    <button class="new_btn" >Checkout and pay</button>
                     </form>
                 </td>
 

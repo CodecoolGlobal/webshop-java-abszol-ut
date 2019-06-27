@@ -36,15 +36,13 @@
 
 <body>
 
-<div class="jumbotron text-center">
+<div class="jumbotron text-center titlename">
     <h1>Codecool Shop</h1>
 </div>
 
 <div class="topnav">
     <a class="active" href="#home">Home</a>
-    <a href="#" id="name"><i th:text="${category.name}"></i></a>
-    <a href="/shopping-cart" id="shoppingCart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-    <iframe
+    <iframe class="frame"
             frameborder="0"
             width="300"
             height="50"
@@ -57,7 +55,7 @@
     <div class="card box-around-dropdown">
         <form action="/" method="post">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="supplier" data-toggle="dropdown"
+                <button class=" new_btn btn-secondary dropdown-toggle" type="button" id="supplier" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Suppliers
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -68,7 +66,7 @@
                 </div>
             </div>
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="category" data-toggle="dropdown"
+                <button class="new_btn btn-secondary dropdown-toggle" type="button" id="category" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                     Categories
                 </button>
@@ -79,6 +77,8 @@
                     <button class="dropdown-item" name="categorybutton" value="4">Adults only</button>
                 </div>
             </div>
+            <a href="#" id="name"><i th:text="${category.name}"></i></a>
+            <a href="/shopping-cart" id="shoppingCart"><img border="0" alt="W3Schools" src="/static/img/hat_icon1.png" width="40" height="40"></a>
         </form>
     </div>
 
@@ -97,7 +97,7 @@
                     </div>
                     <div class="card-text">
                         <form action="/" method="post">
-                            <button class="btn btn-success" name="button" th:value="${prod.id}">Add to cart</button>
+                            <button class="new_btn" name="button" th:value="${prod.id}">Add to cart</button>
                         </form>
                     </div>
                 </div>
