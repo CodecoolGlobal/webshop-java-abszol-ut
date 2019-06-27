@@ -30,7 +30,7 @@ body {
     color: black;
 }
 
-.topnav a.active, .btn-success:hover, .btn-success:active {
+.topnav a.active, .btn-success:hover, .btn-success:active, btn:hover {
     background-color: #a7871b;
     color: #431c05;
 }
@@ -106,10 +106,6 @@ label {
     font-size: 17px;
 }
 
-.btn:hover {
-    background-color: #431c05;
-}
-
 a {
     color: #a7871b;
 }
@@ -128,7 +124,22 @@ span.price {
     .row {
         flex-direction: column-reverse;
     }
+
     .col-25 {
         margin-bottom: 20px;
     }
 }
+
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number], input[type=text], input[type=email] {
+    width: 100%;
+    height: 55px;
+}
+

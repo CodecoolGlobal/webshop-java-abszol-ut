@@ -27,9 +27,6 @@ public class PaymentController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-        TemplateEngine engineGet = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-        WebContext context = new WebContext(req, resp, req.getServletContext());
         OrderDaoMem OrderDaoData = OrderDaoMem.getInstance();
 
 
@@ -41,8 +38,6 @@ public class PaymentController extends HttpServlet {
 
         System.out.println(OrderDaoData.getAll());
 
-
-        engineGet.process("cart/payment.html", context, resp.getWriter());
-
+        resp.sendRedirect("/confirmation");
     }
 }

@@ -1,7 +1,6 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 @WebServlet("/shopping-cart")
@@ -26,11 +24,11 @@ public class ShoppingCartController extends HttpServlet {
         CartDaoMem shoppingCartDataStore = CartDaoMem.getInstance();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("shoppingCartProducts", shoppingCartDataStore.getProductsAndQty());
+        context.setVariable("shoppingCartProducts", shoppingCartDataStore.setAndGetProductsAndQty());
         context.setVariable("totalPrice", shoppingCartDataStore.getTotalPrice());
         shoppingCartDataStore.clearList();
         engine.process("shopping_cart/shopping_cart.html", context, resp.getWriter());
-        System.out.println(shoppingCartDataStore.getProductsAndQty());
+        System.out.println(shoppingCartDataStore.setAndGetProductsAndQty());
 
     }
 
@@ -47,14 +45,14 @@ public class ShoppingCartController extends HttpServlet {
         if (addButton != null) {
 
             shoppingCartDataStore.add(productDataStore.find(Integer.parseInt(addButton)));
-            context.setVariable("shoppingCartProducts", shoppingCartDataStore.getProductsAndQty());
+            context.setVariable("shoppingCartProducts", shoppingCartDataStore.setAndGetProductsAndQty());
             context.setVariable("totalPrice", shoppingCartDataStore.getTotalPrice());
             shoppingCartDataStore.clearList();
             engine.process("shopping_cart/shopping_cart.html", context, resp.getWriter());
 
         } else if (removeButton != null) {
             shoppingCartDataStore.remove(productDataStore.find(Integer.parseInt(removeButton)));
-            context.setVariable("shoppingCartProducts", shoppingCartDataStore.getProductsAndQty());
+            context.setVariable("shoppingCartProducts", shoppingCartDataStore.setAndGetProductsAndQty());
             context.setVariable("totalPrice", shoppingCartDataStore.getTotalPrice());
             shoppingCartDataStore.clearList();
             engine.process("shopping_cart/shopping_cart.html", context, resp.getWriter());
