@@ -21,8 +21,9 @@ body{
     color: #a7871b;
 }
 
-#shoppingCart {
+#shoppingCart, #registration {
     float: right;
+    padding: 2px;
     size: 34px;
 }
 
