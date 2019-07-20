@@ -4,6 +4,8 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -16,9 +18,12 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/checkout"})
 public class CheckoutController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(CheckoutController.class);
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        logger.info("The checkout's GET method was invoked.");
         TemplateEngine engineGet = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
@@ -29,6 +34,8 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        logger.info("The checkout's POST method was invoked.");
+
         OrderDaoMem OrderDaoData = OrderDaoMem.getInstance();
 
 
@@ -41,6 +48,13 @@ public class CheckoutController extends HttpServlet {
 
         System.out.println(OrderDaoData.getAll());
 
+        logger.info("Checkout data: FULLNAME: {}, EMAIL: {}, ADDRESS: {}, CITY: {}, STATE: {}, ZIP: {} ",
+                req.getParameter("fullname"),
+                req.getParameter("email"),
+                req.getParameter("address"),
+                req.getParameter("city"),
+                req.getParameter("state"),
+                req.getParameter("zip"));
         resp.sendRedirect("/payment");
     }
 }

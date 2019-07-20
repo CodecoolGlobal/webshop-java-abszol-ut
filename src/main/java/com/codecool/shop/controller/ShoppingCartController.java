@@ -25,7 +25,7 @@ public class ShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        logger.info("The shopping cart's GET method have been invocated.");
+        logger.info("The shopping cart's GET method have been invoked.");
         CartDaoMem shoppingCartDataStore = CartDaoMem.getInstance();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
@@ -38,7 +38,7 @@ public class ShoppingCartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        logger.info("The shopping cart's POST method have been invocated.");
+        logger.info("The shopping cart's POST method have been invoked.");
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
         String addButton = req.getParameter("add");
