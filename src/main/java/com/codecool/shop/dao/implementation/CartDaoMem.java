@@ -57,6 +57,14 @@ public class CartDaoMem implements CartDao {
         return result;
     }
 
+    public int getCartSize(){
+        int result = 0;
+        for (Map.Entry<Product, Integer> e : productsAndQty.entrySet()){
+            result += e.getValue();
+        }
+        return result;
+    }
+
 
     @Override
     public void add(Product product) {
