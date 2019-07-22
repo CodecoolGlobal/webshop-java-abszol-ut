@@ -45,28 +45,17 @@ public class ConfirmationController extends HttpServlet {
         try {
 
             String json1 = mapper.writeValueAsString(cartMap);
-            sampleObject.put("cart", json1);
+            //sampleObject.putAll(cartMap);
             String json2 = mapper.writeValueAsString(orderMap);
-            sampleObject.put("order", json2);
+            sampleObject.putAll(orderMap);
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
-//        boolean writing = true;
-//        int fileNum = 1;
-//
-//        while (writing) {
-//            File f = new File("../../orderfiles/file" + Integer.toString(fileNum) + ".txt");
-//
-//            if (f.exists()) {
-//                fileNum += 1;
-//            } else {
-//                Files.write(Paths.get("../../orderfiles/file" + Integer.toString(fileNum) + ".txt"), sampleObject.toJSONString().getBytes());
-//                writing = false;
-//            }
-//
-//        }
+        //try (FileWriter file = new FileWriter("./file1.txt")) {
+        //    file.write(sampleObject.toJSONString());
+        //}
 
         shoppingCartDataStore.resetCart();
         engine.process("confirmation/confirmation.html", context, resp.getWriter());

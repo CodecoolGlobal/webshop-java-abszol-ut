@@ -10,8 +10,8 @@ ALTER TABLE IF EXISTS ONLY public.products DROP CONSTRAINT IF EXISTS pk_products
 ALTER TABLE IF EXISTS ONLY public.orders DROP CONSTRAINT IF EXISTS pk_orders_id CASCADE;
 ALTER TABLE IF EXISTS ONLY public.address_info DROP CONSTRAINT IF EXISTS pk_address_info_id CASCADE;
 ALTER TABLE IF EXISTS ONLY public.payment_info DROP CONSTRAINT IF EXISTS pk_payment_info_id CASCADE;
-ALTER TABLE IF EXISTS ONLY public.product_category DROP CONSTRAINT IF EXISTS pk_product_category_id CASCADE;
-ALTER TABLE IF EXISTS ONLY public.supplier DROP CONSTRAINT IF EXISTS pk_supplier_id CASCADE;
+ALTER TABLE IF EXISTS ONLY public.product_category DROP CONSTRAINT IF EXISTS pk_product_categories_id CASCADE;
+ALTER TABLE IF EXISTS ONLY public.supplier DROP CONSTRAINT IF EXISTS pk_suppliers_id CASCADE;
 
 
 DROP TABLE IF EXISTS public.users;
@@ -76,7 +76,7 @@ CREATE TABLE payment_info (
 DROP TABLE IF EXISTS public.product_categories;
 DROP SEQUENCE IF EXISTS public.product_categories_id_seq;
 CREATE TABLE product_categories (
-    id serial NOT NULL,
+    id serial UNIQUE NOT NULL,
     name varchar NOT NULL,
     department varchar NOT NULL,
     description varchar NOT NULL
@@ -85,7 +85,7 @@ CREATE TABLE product_categories (
 DROP TABLE IF EXISTS public.suppliers;
 DROP SEQUENCE IF EXISTS public.suppliers_id_seq;
 CREATE TABLE suppliers (
-    id serial NOT NULL,
+    id serial UNIQUE NOT NULL,
     name varchar NOT NULL,
     description varchar NOT NULL
 );
