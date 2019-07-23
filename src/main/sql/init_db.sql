@@ -30,7 +30,6 @@ CREATE TABLE products (
     id serial NOT NULL,
     name varchar NOT NULL,
     description varchar,
-    url varchar NOT NULL,
     price float NOT NULL,
     currency varchar NOT NULL,
     supplier_id integer NOT NULL,
@@ -44,7 +43,8 @@ CREATE TABLE orders (
     id serial NOT NULL,
     user_id INTEGER NOT NULL,
     product_id integer NOT NULL,
-    qty integer
+    qty integer,
+    payed boolean
 
 );
 
@@ -143,10 +143,10 @@ SELECT pg_catalog.setval('suppliers_id_seq', 1, true);
 INSERT INTO product_categories VALUES (1, 'AKategória','Depi', 'desc');
 SELECT pg_catalog.setval('product_categories_id_seq', 1, true);
 
-INSERT INTO products VALUES (1, 'Varázspálca', 'desc', '/1.png', 11, 'USD' ,1 ,1 );
+INSERT INTO products VALUES (1, 'Varázspálca', 'desc', 11, 'USD' ,1 ,1 );
 SELECT pg_catalog.setval('products_id_seq', 1, true);
 
-INSERT INTO orders VALUES (1, 1, 1, 11);
+INSERT INTO orders VALUES (1, 1, 1, 11, true);
 SELECT pg_catalog.setval('orders_id_seq', 1, true);
 
 INSERT INTO address_info VALUES (1,1,'1','address','city','state',121);
