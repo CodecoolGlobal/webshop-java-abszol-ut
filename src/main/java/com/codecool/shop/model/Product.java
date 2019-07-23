@@ -15,6 +15,7 @@ public class Product extends BaseModel {
         this.setPrice(defaultPrice, currencyString);
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);
+
     }
 
     public float getDefaultPrice() {
@@ -58,6 +59,14 @@ public class Product extends BaseModel {
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
         this.supplier.addProduct(this);
+    }
+
+    public Float getFloatPrice(){
+        return this.defaultPrice;
+    }
+
+    public String getDefCurrencyString(){
+        return this.defaultCurrency.toString();
     }
 
     @Override

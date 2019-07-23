@@ -1,5 +1,6 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.dao.DataAccessException;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
@@ -35,7 +36,12 @@ public class ProductController extends HttpServlet {
         WebContext context = new WebContext(req, resp, req.getServletContext());
         ProductCategory defaultCategory = productCategoryDataStore.find(1);
         context.setVariable("category", defaultCategory);
+        try {
         context.setVariable("products", productDataStore.getBy(defaultCategory));
+
+        }catch (DataAccessException e){
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
 
         if (session.getAttribute("supplier") == null && session.getAttribute("category") == null) {
             session.setAttribute("supplier", null);
