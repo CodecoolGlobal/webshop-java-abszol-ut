@@ -12,6 +12,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PaymentInfoDaoJdbc implements PaymentInfoDao {
+
+    private static PaymentInfoDaoJdbc instance = null;
+
+    private PaymentInfoDaoJdbc() {
+    }
+
+    public static PaymentInfoDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new PaymentInfoDaoJdbc();
+        }
+        return instance;
+    }
+
     private MakeDBConnection makeDBConnection = new MakeDBConnection();
 
     @Override

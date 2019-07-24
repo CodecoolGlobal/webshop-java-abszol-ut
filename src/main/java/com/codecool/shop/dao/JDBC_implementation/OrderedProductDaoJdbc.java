@@ -13,6 +13,18 @@ import java.util.List;
 
 public class OrderedProductDaoJdbc implements OrderedProductDao {
 
+    private static OrderedProductDaoJdbc instance = null;
+
+    private OrderedProductDaoJdbc() {
+    }
+
+    public static OrderedProductDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new OrderedProductDaoJdbc();
+        }
+        return instance;
+    }
+
     private MakeDBConnection makeDBConnection = new MakeDBConnection();
 
     @Override
