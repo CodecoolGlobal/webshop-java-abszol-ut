@@ -17,16 +17,15 @@ public class AddressInfoDaoJdbc implements AddressInfoDao {
 
     @Override
     public void add(AddressInfo addressInfo) {
-        String query = "INSERT INTO address_info (id, user_id, full_name, address, city, state, zip) VALUES (?,?,?,?,?,?,?);";
+        String query = "INSERT INTO address_info (user_id, full_name, address, city, state, zip) VALUES (?,?,?,?,?,?,?);";
         try (Connection connection = makeDBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, addressInfo.getID());
-            preparedStatement.setInt(2, addressInfo.getUserID());
-            preparedStatement.setString(3, addressInfo.getFullName());
-            preparedStatement.setString(4, addressInfo.getAddress());
-            preparedStatement.setString(5, addressInfo.getCity());
-            preparedStatement.setString(6, addressInfo.getState());
-            preparedStatement.setInt(7, addressInfo.getZip());
+            preparedStatement.setInt(1, addressInfo.getUserID());
+            preparedStatement.setString(2, addressInfo.getFullName());
+            preparedStatement.setString(3, addressInfo.getAddress());
+            preparedStatement.setString(4, addressInfo.getCity());
+            preparedStatement.setString(5, addressInfo.getState());
+            preparedStatement.setInt(6, addressInfo.getZip());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DataAccessException(e);

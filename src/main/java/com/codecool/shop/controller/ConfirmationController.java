@@ -19,11 +19,11 @@ import java.util.HashMap;
 import java.io.FileWriter;
 import java.io.File;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+//
+//import com.fasterxml.jackson.core.JsonProcessingException;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebServlet("/confirmation")
 public class ConfirmationController extends HttpServlet {
@@ -35,23 +35,23 @@ public class ConfirmationController extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        ObjectMapper mapper = new ObjectMapper();
+//        ObjectMapper mapper = new ObjectMapper();
 
         HashMap cartMap = shoppingCartDataStore.getProductsAndQty();
         HashMap orderMap = orderData.getAll();
 
-        JSONObject sampleObject = new JSONObject();
-
-        try {
-
-            String json1 = mapper.writeValueAsString(cartMap);
-            //sampleObject.putAll(cartMap);
-            String json2 = mapper.writeValueAsString(orderMap);
-            sampleObject.putAll(orderMap);
-
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+//        JSONObject sampleObject = new JSONObject();
+//
+//        try {
+//
+//            String json1 = mapper.writeValueAsString(cartMap);
+//            //sampleObject.putAll(cartMap);
+//            String json2 = mapper.writeValueAsString(orderMap);
+//            sampleObject.putAll(orderMap);
+//
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
 
         //try (FileWriter file = new FileWriter("./file1.txt")) {
         //    file.write(sampleObject.toJSONString());

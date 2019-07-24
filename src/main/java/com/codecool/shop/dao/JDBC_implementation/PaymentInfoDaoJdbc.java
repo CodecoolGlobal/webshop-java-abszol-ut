@@ -16,15 +16,14 @@ public class PaymentInfoDaoJdbc implements PaymentInfoDao {
 
     @Override
     public void add(PaymentInfo paymentInfo) {
-        String query = "INSERT INTO payment_info (id, user_id, name, card_number, month, year) VALUES (?,?,?,?,?,?);";
+        String query = "INSERT INTO payment_info (user_id, name, card_number, month, year) VALUES (?,?,?,?,?);";
         try (Connection connection = makeDBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, paymentInfo.getID());
-            preparedStatement.setInt(2, paymentInfo.getUserID());
-            preparedStatement.setString(3, paymentInfo.getName());
-            preparedStatement.setInt(4, paymentInfo.getCardNumber());
-            preparedStatement.setInt(5, paymentInfo.getMonth());
-            preparedStatement.setInt(6, paymentInfo.getYear());
+            preparedStatement.setInt(1, paymentInfo.getUserID());
+            preparedStatement.setString(2, paymentInfo.getName());
+            preparedStatement.setInt(3, paymentInfo.getCardNumber());
+            preparedStatement.setInt(4, paymentInfo.getMonth());
+            preparedStatement.setInt(5, paymentInfo.getYear());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DataAccessException(e);

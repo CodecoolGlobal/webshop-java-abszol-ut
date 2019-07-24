@@ -2,7 +2,7 @@ package com.codecool.shop.model;
 
 public class AddressInfo {
 
-    private int ID;
+
     private int userID;
     private String fullName;
     private String address;
@@ -10,22 +10,13 @@ public class AddressInfo {
     private String state;
     private int zip;
 
-    public AddressInfo(int ID, int userID, String fullName, String address, String city, String state, int zip) {
-        this.ID = ID;
+    public AddressInfo( int userID, String fullName, String address, String city, String state, int zip) {
         this.userID = userID;
         this.fullName = fullName;
         this.address = address;
         this.city = city;
         this.state = state;
         this.zip = zip;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public int getUserID() {

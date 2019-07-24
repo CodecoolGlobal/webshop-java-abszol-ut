@@ -16,13 +16,12 @@ public class UserDaoJdbc implements UserDao {
 
     @Override
     public void add(User user) {
-        String query = "INSERT INTO users (id, username, email, password) VALUES (?,?,?,?);";
+        String query = "INSERT INTO users (ID, username, email, password) VALUES (DEFAULT,?,?,?);";
         try (Connection connection = makeDBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, user.getID());
-            preparedStatement.setString(2, user.getUserName());
-            preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DataAccessException(e);

@@ -1,9 +1,11 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.JDBC_implementation.UserDaoJdbc;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
+import com.codecool.shop.model.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -30,18 +32,13 @@ public class RegistrationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-//        OrderDaoMem OrderDaoData = OrderDaoMem.getInstance();
-//
-//
-//        OrderDaoData.add("fullname", req.getParameter("fullname"));
-//        OrderDaoData.add("email", req.getParameter("email"));
-//        OrderDaoData.add("address", req.getParameter("address"));
-//        OrderDaoData.add("city", req.getParameter("city"));
-//        OrderDaoData.add("state", req.getParameter("state"));
-//        OrderDaoData.add("zip", req.getParameter("zip"));
-//
-//        System.out.println(OrderDaoData.getAll());
+        UserDaoJdbc UserData = new UserDaoJdbc();
 
-        resp.sendRedirect("/registration");
+        User user = new User(req.getParameter("username"), req.getParameter("email"),req.getParameter("password"));
+        UserData.add(user);
+
+        System.out.println(UserData.getAll());
+
+        resp.sendRedirect("Users/registration.html");
     }
 }

@@ -2,15 +2,14 @@ package com.codecool.shop.model;
 
 public class PaymentInfo {
 
-    private int ID;
+
     private int userID;
     private String name;
     private int cardNumber;
     private int month;
     private int year;
 
-    public PaymentInfo(int ID, int userID, String name, int cardNumber, int month, int year) {
-        this.ID = ID;
+    public PaymentInfo( int userID, String name, int cardNumber, int month, int year) {
         this.userID = userID;
         this.name = name;
         this.cardNumber = cardNumber;
@@ -18,13 +17,6 @@ public class PaymentInfo {
         this.year = year;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public int getUserID() {
         return userID;

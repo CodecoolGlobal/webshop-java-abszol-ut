@@ -17,14 +17,13 @@ public class OrderedProductDaoJdbc implements OrderedProductDao {
 
     @Override
     public void add(OrderedProduct orderedProduct) {
-        String query = "INSERT INTO orders (id, user_id, product_id, qty, payed) VALUES (?,?,?,?,?);";
+        String query = "INSERT INTO orders (user_id, product_id, qty, payed) VALUES (?,?,?,?,?);";
         try (Connection connection = makeDBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, orderedProduct.getID());
-            preparedStatement.setInt(2, orderedProduct.getUserID());
-            preparedStatement.setInt(3, orderedProduct.getProductID());
-            preparedStatement.setInt(4, orderedProduct.getQty());
-            preparedStatement.setBoolean(5, orderedProduct.isPayed());
+            preparedStatement.setInt(1, orderedProduct.getUserID());
+            preparedStatement.setInt(2, orderedProduct.getProductID());
+            preparedStatement.setInt(3, orderedProduct.getQty());
+            preparedStatement.setBoolean(4, orderedProduct.isPayed());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DataAccessException(e);
