@@ -1,0 +1,4 @@
+db.driver.class=org.postgresql.Driver
+db.conn.url=jdbc:postgresql://localhost:5432/TYPEDATABASENAMEHEREPLEASETHANKYOUBYE
+db.username=WADAFAKISYOUNAME
+db.password=NEWPASSWHODIS
