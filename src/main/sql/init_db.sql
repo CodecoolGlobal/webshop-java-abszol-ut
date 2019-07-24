@@ -29,11 +29,11 @@ DROP SEQUENCE IF EXISTS public.products_id_seq;
 CREATE TABLE products (
     id serial NOT NULL,
     name varchar NOT NULL,
-    description varchar,
     price float NOT NULL,
     currency varchar NOT NULL,
-    supplier_id integer NOT NULL,
-    category_id integer NOT NULL
+    description varchar,
+    category_id integer NOT NULL,
+    supplier_id integer NOT NULL
 
 );
 
@@ -137,14 +137,38 @@ INSERT INTO users VALUES (2, 'Hermione', 'Hermione@gmail.com', 'ILoveHagridhasha
 INSERT INTO users VALUES (3, 'harrmione', 'asdad@gmail.com', 'ILoveHagridhashas');
 SELECT pg_catalog.setval('users_id_seq', 3, true);
 
-INSERT INTO suppliers VALUES (1, 'ABeszállító', 'desc');
-SELECT pg_catalog.setval('suppliers_id_seq', 1, true);
+INSERT INTO suppliers VALUES (1, 'Wanna have some drugs? Corp', 'Supported by Daniel Radcliffe');
+INSERT INTO suppliers VALUES (2, 'Olliwander ''s Magic Wands', 'Very best wands in town, where the size doesn''t matter');
+INSERT INTO suppliers VALUES (3, 'Weasley''s Tutoring', 'Most effective spells, from experts');
+INSERT INTO suppliers VALUES (4, 'Cheap Slaves LTD', 'From beasts to humans, for weddings, stags, birthdays, funerals, etc.');
+SELECT pg_catalog.setval('suppliers_id_seq', 4, true);
 
-INSERT INTO product_categories VALUES (1, 'AKategória','Depi', 'desc');
-SELECT pg_catalog.setval('product_categories_id_seq', 1, true);
+INSERT INTO product_categories VALUES (1, 'Magic tool','Tools', 'Utilities for magic');
+INSERT INTO product_categories VALUES (2, 'Magic spell','Spells', 'Most effective words against enemies');
+INSERT INTO product_categories VALUES (3, 'Rental','Rentals', 'Various species around the world');
+INSERT INTO product_categories VALUES (4, '18+','Adults only', 'BEWARE! Adults only! :O');
+SELECT pg_catalog.setval('product_categories_id_seq', 4, true);
 
-INSERT INTO products VALUES (1, 'Varázspálca', 'desc', 11, 'USD' ,1 ,1 );
-SELECT pg_catalog.setval('products_id_seq', 1, true);
+INSERT INTO products VALUES (1, 'Magic Dust', 10, 'USD' , 'Pure happiness and joy', 1 ,1 );
+INSERT INTO products VALUES (2, 'Cloak of invisibility', 50, 'USD', 'Watch out!' ,1 ,1 );
+INSERT INTO products VALUES (3, 'Magic wand - phoenix feather',20 , 'USD', 'Optimal for fiery wizards and witches' ,1 ,2 );
+INSERT INTO products VALUES (4, 'Magic wand - dragon heart string',20 , 'USD', 'Optimal for fiery wizards and witches' ,1 ,2 );
+INSERT INTO products VALUES (5, 'Magic wand - unicorn hair',20 , 'USD', 'Optimal for fiery wizards and witches' ,1 ,2 );
+INSERT INTO products VALUES (6, 'Invito',30 , 'USD', 'Don''t be so distant - pull your loved ones closer' ,2 ,3 );
+INSERT INTO products VALUES (7, 'Expecto Patronum(with custom animal type)',30 , 'USD', 'Good defender against dementors' ,2 ,3 );
+INSERT INTO products VALUES (8, 'To be an animagus(with custom animal type',40 , 'USD', 'Why just wonder wildlife if you can be a part of it?' ,2 ,3 );
+INSERT INTO products VALUES (9, 'Vingardium leviosa',30 , 'USD', 'Not leviosaaa!' ,2 ,3 );
+INSERT INTO products VALUES (10, 'Hungarian Horntail',200 , 'USD', 'Coolest dragon ever' ,3 ,4 );
+INSERT INTO products VALUES (11, 'Hippogriff',200 , 'USD', 'Known flying object' ,3 ,4 );
+INSERT INTO products VALUES (12, 'Phoenix',300 , 'USD', 'Pet for life' ,3 ,4 );
+INSERT INTO products VALUES (13, 'Rubeus Hagrid',300 , 'USD', 'Happi birthdae, Hary!' ,3 ,4 );
+INSERT INTO products VALUES (14, 'Random human pack',50 , 'USD', 'Surpriiiise!' ,3 ,4 );
+INSERT INTO products VALUES (15, 'Phoenix tear',600 , 'USD', 'Wounds are for the weak' ,4 ,3 );
+INSERT INTO products VALUES (16, 'Magic mushrooms',600 , 'USD', 'Original magic' ,4 ,1 );
+INSERT INTO products VALUES (17, 'Mandragora root',600 , 'USD', 'Solution for blue screen of death' ,4 ,1 );
+INSERT INTO products VALUES (18, 'Basilisc fang',600 , 'USD', 'If you''re bored of the book...' ,4 ,1 );
+INSERT INTO products VALUES (19, 'Unicorn blood',600 , 'USD', 'Stay alive - drink blood!' ,4 ,1 );
+SELECT pg_catalog.setval('products_id_seq', 19, true);
 
 INSERT INTO orders VALUES (1, 1, 1, 11, true);
 SELECT pg_catalog.setval('orders_id_seq', 1, true);
@@ -154,4 +178,3 @@ SELECT pg_catalog.setval('address_info_id_seq', 1, true);
 
 INSERT INTO payment_info VALUES (1,1,'fullname',12345,2,21);
 SELECT pg_catalog.setval('payment_info_id_seq', 1, true);
-
