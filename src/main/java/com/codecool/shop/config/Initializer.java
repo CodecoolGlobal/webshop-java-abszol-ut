@@ -19,7 +19,7 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class Initializer implements ServletContextListener {
 
-    public static boolean dbActive = false;
+    public static boolean dbActive = true;
 
     public boolean isDbActive() {
         return dbActive;
