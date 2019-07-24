@@ -1,6 +1,10 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.config.Initializer;
 import com.codecool.shop.dao.DataAccessException;
+import com.codecool.shop.dao.JDBC_implementation.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.JDBC_implementation.ProductDaoJdbc;
+import com.codecool.shop.dao.JDBC_implementation.SupplierDaoJdbc;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
@@ -25,10 +29,28 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
 
+    private ProductCategoryDao productCategoryDataStore;
+    private SupplierDao supplierDataStore;
+    private ProductDao productDataStore;
+    private Initializer initializer = new Initializer();
+
+    public void checkDbActive(){
+        if (initializer.isDbActive()){
+            productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
+            supplierDataStore = SupplierDaoJdbc.getInstance();
+            productDataStore = ProductDaoJdbc.getInstance();
+        }
+        else{
+            productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+            supplierDataStore = SupplierDaoMem.getInstance();
+            productDataStore = ProductDaoMem.getInstance();
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+
+        checkDbActive();
 
         HttpSession session = req.getSession();
 
@@ -54,9 +76,8 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
-        ProductDao productDataStore = ProductDaoMem.getInstance();
+
+        checkDbActive();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
 

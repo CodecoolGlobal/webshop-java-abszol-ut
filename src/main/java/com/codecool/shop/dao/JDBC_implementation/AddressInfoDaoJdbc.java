@@ -13,6 +13,18 @@ import java.util.List;
 
 public class AddressInfoDaoJdbc implements AddressInfoDao {
 
+    private static AddressInfoDaoJdbc instance = null;
+
+    private AddressInfoDaoJdbc() {
+    }
+
+    public static AddressInfoDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new AddressInfoDaoJdbc();
+        }
+        return instance;
+    }
+
     private MakeDBConnection makeDBConnection = new MakeDBConnection();
 
     @Override

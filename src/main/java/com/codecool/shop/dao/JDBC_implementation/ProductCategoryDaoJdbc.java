@@ -9,10 +9,24 @@ import com.codecool.shop.model.ProductCategory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoryDaoJdbc implements ProductCategoryDao {
+
+    private static ProductCategoryDaoJdbc instance = null;
+
+    private ProductCategoryDaoJdbc() {
+    }
+
+    public static ProductCategoryDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new ProductCategoryDaoJdbc();
+        }
+        return instance;
+    }
 
     private MakeDBConnection makeDBConnection = new MakeDBConnection();
 
@@ -32,9 +46,26 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     }
 
+
     @Override
     public ProductCategory find(int id) {
-        return null;
+        String query = "SELECT * FROM product_categories WHERE id=(?) ";
+        try (Connection connection = makeDBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            ResultSet result = preparedStatement.executeQuery();
+            ProductCategory resultCategory = null;
+            if (result.next()){
+                String tempName = result.getString("name");
+                String tempDepartment = result.getString("department");
+                String tempDescription = result.getString("description");
+                resultCategory = new ProductCategory(id, tempName, tempDepartment, tempDescription);
+            }
+            return resultCategory;
+        } catch (SQLException e) {
+            throw new DataAccessException(e);
+        }
+
     }
 
     @Override
