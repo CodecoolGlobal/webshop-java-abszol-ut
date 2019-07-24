@@ -3,12 +3,9 @@ package com.codecool.shop.dao.JDBC_implementation;
 import com.codecool.shop.dao.DataAccessException;
 import com.codecool.shop.dao.UserDao;
 import com.codecool.shop.model.MakeDBConnection;
-import com.codecool.shop.model.OrderedProduct;
 import com.codecool.shop.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class UserDaoJdbc implements UserDao {
@@ -28,6 +25,24 @@ public class UserDaoJdbc implements UserDao {
         }
 
     }
+
+
+    // Username és email ellenőrzés, kezdetleges.
+
+    @Override
+    public boolean userName(String username, String email) {
+        String query = "SELECT username From users WHERE username=? or email=?;";
+
+        try (Connection connection = makeDBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, email);
+    }
+
+
+
+
+
 
     @Override
     public User find(int id) {

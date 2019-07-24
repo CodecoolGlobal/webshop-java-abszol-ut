@@ -37,8 +37,8 @@ public class RegistrationController extends HttpServlet {
         User user = new User(req.getParameter("username"), req.getParameter("email"),req.getParameter("password"));
         UserData.add(user);
 
-        System.out.println(UserData.getAll());
+        if(req.getParameter("username") == )
 
-        resp.sendRedirect("Users/registration.html");
+        resp.sendRedirect("/");
     }
 }

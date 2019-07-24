@@ -115,7 +115,7 @@ ALTER TABLE ONLY orders
 
 ALTER TABLE ONLY orders
     ADD CONSTRAINT fk_orders_product_id FOREIGN KEY (product_id) REFERENCES products(id);
-
+suppliers
 ALTER TABLE ONLY address_info
     ADD CONSTRAINT fk_address_info_id FOREIGN KEY (user_id) REFERENCES users(id);
 

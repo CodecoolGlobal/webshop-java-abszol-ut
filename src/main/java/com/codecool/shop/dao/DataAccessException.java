@@ -1,5 +1,9 @@
 package com.codecool.shop.dao;
 
+import sun.security.pkcs11.P11Util;
+
+import java.sql.SQLIntegrityConstraintViolationException;
+
 public class DataAccessException extends RuntimeException{
     public DataAccessException() {
     }
@@ -19,4 +23,5 @@ public class DataAccessException extends RuntimeException{
     public DataAccessException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
+
 }
