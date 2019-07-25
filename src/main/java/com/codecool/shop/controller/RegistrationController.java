@@ -8,6 +8,7 @@ import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.model.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,9 @@ public class RegistrationController extends HttpServlet {
 
         UserDaoJdbc UserData = new UserDaoJdbc();
 
-        User user = new User(req.getParameter("username"), req.getParameter("email"),req.getParameter("password"));
+        String pw = BCrypt.hashpw(req.getParameter("password"), BCrypt.gensalt());
+
+        User user = new User(req.getParameter("username"), req.getParameter("email"), pw);
         UserData.add(user);
 
         System.out.println(UserData.getAll());
