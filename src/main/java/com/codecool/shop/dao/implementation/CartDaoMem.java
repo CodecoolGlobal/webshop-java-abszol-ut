@@ -77,6 +77,8 @@ public class CartDaoMem implements CartDao {
         }
     }
 
+    public void setUser(String name){}
+
     @Override
     public List<Product> getAll() {
         return data;
