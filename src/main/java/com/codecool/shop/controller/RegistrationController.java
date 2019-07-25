@@ -39,6 +39,6 @@ public class RegistrationController extends HttpServlet {
 
         System.out.println(UserData.getAll());
 
-        resp.sendRedirect("Users/registration.html");
+        resp.sendRedirect("/");
     }
 }
